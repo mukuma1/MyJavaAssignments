@@ -8,7 +8,7 @@ public class IncrementOperator {
 
 		boolean reminder = (x % 2) == 0;
 		if (reminder == true) {
-			System.out.println("Value of 'x' is " + x + ", its an even number");
+			System.out.println("Value of 'x' is " + x + ", it's an even number");
 		}
 
 		if (reminder == false) {
