@@ -17,7 +17,7 @@ public class loopsPart2 {
 				System.out.println("You are Logged in to the application");
 				break;
 			} else if (i == 1) {
-				System.out.println("Maximum attempts of incoorect usename or password. Account locked");
+				System.out.println("Maximum attempts of incorrect username or password. Account locked");
 				break;
 			} else
 				System.out.println("Incorrect Username or password. Try again");
