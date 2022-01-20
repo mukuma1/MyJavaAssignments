@@ -22,7 +22,7 @@ public class phoneBrand {
 			for (int i = 0; i < samsung.length; i++) {
 				System.out.println(samsung[i]);
 			}
-			// Prompting Product & matching it will array elements
+			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
 			String product = sc.next();
 			for (int i = 0; i < samsung.length; i++) {
@@ -45,7 +45,7 @@ public class phoneBrand {
 			for (int i = 0; i < samsung.length; i++) {
 				System.out.println(google[i]);
 			}
-			// Prompting Product & matching it will array elements
+			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
 			product = sc.next();
 			for (int i = 0; i < samsung.length; i++) {
@@ -68,7 +68,7 @@ public class phoneBrand {
 			for (int i = 0; i < samsung.length; i++) {
 				System.out.println(apple[i]);
 			}
-			// Prompting Product & matching it will array elements
+			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
 			product = sc.next();
 			for (int i = 0; i < samsung.length; i++) {
