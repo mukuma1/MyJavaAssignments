@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Demo {
 
 	public static void main(String[] args) {
-		boolean isfound = false;
+		boolean isbrandvalid = true;
+		boolean isProductFound = false;
 		String[] samsung = { "S20", "S21", "Flip3", "Fold3" };
-		String[] google = { "GooglePixel6", "GooglePixel6Pro", "GooglePixelPro", "GooglePixel5" };
-		String[] apple = { "iPhone12", "iPhone12Mini", "iPhone11", "iPhone11Mini" };
+		String[] google = { "GooglePixel 6", "GooglePixel 6 Pro", "GooglePixelPro", "GooglePixel 5" };
+		String[] apple = { "iPhone12", "iPhone12 Mini", "iPhone11", "iPhone11 Mini" };
 		System.out.println("Enter the brand name to view the list of available product");
 		Scanner sc = new Scanner(System.in);
-		String brand = sc.next();
+		String brand = sc.nextLine();
 
 		switch (brand) {
 
@@ -24,11 +25,11 @@ public class Demo {
 			}
 			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
-			String product = sc.next();
+			String product = sc.nextLine();
 			for (int i = 0; i < samsung.length; i++) {
 				if (product.equals(samsung[i])) {
 					System.out.println("Product Selected is: " + samsung[i]);
-					isfound = true;
+					isProductFound = true;
 					break;
 				}
 			}
@@ -43,11 +44,11 @@ public class Demo {
 			}
 			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
-			product = sc.next();
+			product = sc.nextLine();
 			for (int i = 0; i < google.length; i++) {
 				if (product.equals(google[i])) {
 					System.out.println("Product Selected is: " + google[i]);
-					isfound = true;
+					isProductFound = true;
 					break;
 				}
 			}
@@ -62,11 +63,11 @@ public class Demo {
 			}
 			// Prompting Product & matching it with array elements
 			System.out.println("Please select a product");
-			product = sc.next();
+			product = sc.nextLine();
 			for (int i = 0; i < apple.length; i++) {
 				if (product.equals(apple[i])) {
 					System.out.println("Product Selected is: " + apple[i]);
-					isfound = true;
+					isProductFound = true;
 					break;
 				}
 			}
@@ -75,9 +76,11 @@ public class Demo {
 
 		default:
 			System.out.println("Invalid Brand");
+			isbrandvalid = false;
 		}
 		// Condition for error message
-		if (!isfound) {
+
+		if (isbrandvalid && !isProductFound) {
 			System.out.println("Invalid Product. Please select a product from the list");
 		}
 
