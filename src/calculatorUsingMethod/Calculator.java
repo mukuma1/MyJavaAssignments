@@ -34,7 +34,7 @@ public class Calculator {
 			result=result/num2;
 			break;
 		default:
-			System.out.println("Please select a valid Operation. The first Number Entered is:");
+			System.out.println("Please select a valid Operation. The first number entered or the result of previous operation is:");
 			break;
 
 		}
