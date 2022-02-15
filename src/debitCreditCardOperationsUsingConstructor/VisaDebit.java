@@ -1,7 +1,7 @@
 package debitCreditCardOperationsUsingConstructor;
 
-public class VisaDebit extends AtmMoneyWithdrawl {
-	//Implemented Multilevel Inheritance
+public class VisaDebit extends AtmMoneyWithdrawlSuprClas2 {
+	// Implemented Multilevel Inheritance
 	
 	public VisaDebit() {
 		super();
@@ -9,22 +9,22 @@ public class VisaDebit extends AtmMoneyWithdrawl {
 
 	public VisaDebit(String cardNumber, int pinNumber, double balance) {// parameterised Constructor
 		super();
-		this.cardNumber = cardNumber;
-		this.pinNumber = pinNumber;
+		setCardNumber(cardNumber);
+		setPinNumber(pinNumber);;
 		this.balance = balance;
 	}
 
-	public String preAuthorizedDebit(String cardNumber) {
-		if (this.cardNumber.equals(cardNumber)) {
+	public String billPayment(boolean isBillPaymentActivated) {
+		if (isBillPaymentActivated) {
 			System.out.println("Enter the Bill Amount");
 			double billamount = sc.nextDouble();
 			if ((balance >= billamount)) {
 				balance = balance - billamount;
 				return "Bill Payment Sucessful";
 			}
-			return "Transaction declined.No sufficient Balance";
+			return "No sufficient Balance to process the payment";
 		}
-		return "Transaction declined.Pre-Authorization not activated for the institution";
+		return "Bill payment not activated for the institution. Please activate & try again";
 	}
 
 }

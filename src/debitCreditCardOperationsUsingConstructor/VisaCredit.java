@@ -1,19 +1,20 @@
 package debitCreditCardOperationsUsingConstructor;
 
-public class VisaCredit extends AtmMoneyWithdrawl {
-	//Multilevel Inheritance
+public class VisaCredit extends AtmMoneyWithdrawlSuprClas2 {
+	// Multilevel Inheritance
 	double creditAvailable;
 	int creditLimit;
 	double balance;
 	int dailywithdrawLimit;
 
-	public VisaCredit(String cardNumber, int pinNumber, double creditAvailable, int creditLimit,int dailyWithdrawLimit) {
+	public VisaCredit(String cardNumber, int pinNumber, double creditAvailable, int creditLimit,
+			int dailyWithdrawLimit) {
 		super();
-		this.cardNumber = cardNumber;
-		this.pinNumber = pinNumber;
+		setCardNumber(cardNumber);
+		setPinNumber(pinNumber);
 		this.creditAvailable = creditAvailable;
 		this.creditLimit = creditLimit;
-		this.dailywithdrawLimit=dailyWithdrawLimit;
+		this.dailywithdrawLimit = dailyWithdrawLimit;
 	}
 
 	@Override
@@ -27,18 +28,22 @@ public class VisaCredit extends AtmMoneyWithdrawl {
 	}
 
 	@Override
-	public double withDrawMoney(String cardNumber, int pinNumber) {
+	public String withDrawMoney(String cardNumber, int pinNumber) {
 		if (cardVerification(cardNumber, pinNumber)) {
 			System.out.println("Please Enter The Amount to be withdrawn");
 			int amountToBeWithdrawn = sc.nextInt();
-			if ((creditAvailable >= amountToBeWithdrawn)&&amountToBeWithdrawn<=(dailywithdrawLimit-5)) {// Cash advance service charge=5.00/-
-				getbalance();
-				balance = balance + amountToBeWithdrawn + 5;// Cash advance service charge=5.00/-
-				creditAvailable = creditLimit - balance;
-				return amountToBeWithdrawn;
+			if (amountToBeWithdrawn <= (dailywithdrawLimit - 5)) {// Cash advance service charge=5.00/-
+				if (creditAvailable >= amountToBeWithdrawn) {
+					getbalance();
+					balance = balance + amountToBeWithdrawn + 5;// Cash advance service charge=5.00/-
+					creditAvailable = creditLimit - balance;
+					return "Withdrawl sucessfull for the amount of " + amountToBeWithdrawn;
+				}
+				return "Unable to process. Insufficient Balance";
 			}
+			return "Requested Amount exceeds the daily withdrawl limit";
 		}
-		return 0;
+		return "Invalid credentials. Entered Card Number or Pin Number is incorrect";
 	}
 
 	@Override
@@ -59,8 +64,8 @@ public class VisaCredit extends AtmMoneyWithdrawl {
 	 * Assuming 1% immediate cash back for all purchases & bill payment done via
 	 * credit card
 	 */
-	public String billPayment(String cardNumber) {
-		if (this.cardNumber.equals(cardNumber)) {
+	public String preAuthorizedDebit(boolean isPreAuthorizedPaymentActivated) {
+		if (isPreAuthorizedPaymentActivated) {
 			System.out.println("Enter the Bill Amount");
 			double billamount = sc.nextDouble();
 			if (billamount <= creditAvailable) {
@@ -68,11 +73,11 @@ public class VisaCredit extends AtmMoneyWithdrawl {
 				getbalance();
 				balance = balance + billamount - cashBack;
 				creditAvailable = creditLimit - balance;
-				return "Bill Payment Sucessful";
+				return "Transaction Sucessful";
 			}
-			return "No sufficient Balance to process the payment";
+			return "Transaction declined.No sufficient Balance";
 		}
-		return "Bill payment not activated for the institution. Please activate & try again";
+		return "Transaction declined.Pre-Authorization not activated for the institution";
 	}
 
 }
